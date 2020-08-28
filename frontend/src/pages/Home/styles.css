@@ -1,0 +1,77 @@
+main {
+  background: #f0f0f8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+main h1 {
+  color: #1e88e5;
+  margin: 15px;
+}
+
+main .main-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+
+  gap: 16px;
+
+  padding: 30px;
+}
+
+main .main-grid .card-cel {
+  display: flex;
+  flex-direction: column;
+  background: #455a64;
+  border-radius: 16px;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+  width: 450px;
+  cursor: pointer;
+}
+
+main .main-grid .card-cel img {
+  background: #FFF;
+  min-width: 450px;
+  min-height: 450px;
+  max-height: 450px;
+  max-height: 450px;
+  height: auto;
+}
+main .main-grid .card-cel .description {
+  padding: 20px;
+  color: #FFF;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 400px;
+
+}
+
+main .main-grid .card-cel .description h2{
+  font-size: 26px;
+  margin-bottom: 10px;
+}
+
+main .main-grid .card-cel .description p{
+  font-weight: 300;
+  margin-bottom: 5px;
+  font-size: 18px;
+}
+
+main .main-grid .card-cel .description h3{
+  font-size: 22px;
+  color: #00e676;
+  margin: 15px 0 0;
+}
+
+main .main-grid .card-cel .description h4{
+  font-size: 18px;
+  margin: 15px 0 0;
+}
+
+main .main-grid .card-cel .description .button-add{
+  display: flex;
+  max-width: 270px;
+  margin-top: 35px;
+}
