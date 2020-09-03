@@ -11,17 +11,56 @@
   margin-top: 25px;
   border-radius: 8px;
   padding: 30px;
+  align-items: center;
 }
 
-.card-form .card-form-content .form-fields{
+
+.form-fields{
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
+
 
 .form-fields label{
   font-size: 24px;
   margin: 5px 0;
 }
 
+
 .form-fields input{
+  width: 100%;
+  padding: 15px;
+  font-size: 20px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  background: #e3e3e6;
+  border: 0;
+}
+
+.form-address .form-fields + .form-fields{
+  margin-left: 25px;
+}
+
+.card-form .card-form-content button{
+  width: 300px;
+  background: #ff9800;
+  cursor: pointer;
+  padding: 15px;
+  font-size: 30px;
+  border: 0;
+  border-radius: 8px;
+  margin: 15px 0;
+  color: #000;
+  translate: .2s;
+}
+
+.card-form .card-form-content button:hover{
+  background: #f09000;
+}
+
+.card-form .card-form-content .form-address{
+  display: flex;
+  align-items: center;
+  width: 100%;
 }

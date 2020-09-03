@@ -22,6 +22,11 @@ export default function Cart() {
           initialValues={{
             name: '',
             email: '',
+            cpf: '',
+            cep: '',
+            address: '',
+            district: '',
+            number:''
           }}
           render={({ values, isValid }) => (
             <Form>
@@ -31,22 +36,46 @@ export default function Cart() {
                   <Field name='name' type='text' />
                   <ErrorMessage name='name' />
                 </div>
+
                 <div className='form-fields' >
                   <label>E-mail</label>
                   <Field name='email' type='email' />
                   <ErrorMessage name='email' />
                 </div>
+
                 <div className='form-fields' >
                   <label>CPF</label>
-                  <Field name='email' type='text' />
+                  <Field name='cpf' type='text' />
                   <ErrorMessage name='cpf' />
                 </div>
-                <div className='form-fields' >
-                  <label>E-mail</label>
-                  <Field name='email' type='email' />
-                  <ErrorMessage name='email' />
+
+                <div className='form-address'>
+                  <div className='form-fields' >
+                    <label>CEP</label>
+                    <Field name='cep' type='numero' />
+                    <ErrorMessage name='cep' />
+                  </div>
+                  <div className='form-fields' >
+                    <label>Rua</label>
+                    <Field name='address' type='text' />
+                    <ErrorMessage name='address' />
+                  </div>
                 </div>
-                <button type='submit' disabled={!isValid}>Enviar</button>
+
+                <div className='form-address'>
+                  <div className='form-fields' >
+                    <label>Bairro</label>
+                    <Field name='district' type='text' />
+                    <ErrorMessage name='district' />
+                  </div>
+                  <div className='form-fields'>
+                    <label>Número</label>
+                    <Field name='number' type='numero' />
+                    <ErrorMessage name='number' />
+                  </div>
+
+                </div>
+                <button type='submit' disabled={!isValid}>Cadastrar</button>
               </div>
             </Form>
           )}
