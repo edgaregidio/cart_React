@@ -26,11 +26,26 @@ export default function Cart() {
             cep: '',
             address: '',
             district: '',
-            number:''
+            number: ''
           }}
           render={({ values, isValid }) => (
             <Form>
+
+
+
               <div className='card-form-content'>
+                <div className='result-products'>
+                  <div>
+                    <h1>Valor total</h1>
+                    <h1>R$ 4000,00</h1>
+                  </div>
+
+                  <div>
+                    <h1>Total de itens</h1>
+                    <h1>4</h1>
+                  </div>
+
+                </div>
                 <div className='form-fields'>
                   <label>Nome</label>
                   <Field name='name' type='text' />
