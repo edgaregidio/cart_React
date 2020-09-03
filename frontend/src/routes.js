@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 import Home from './pages/Home'
 import Cart from './pages/Cart'
 import Product from './pages/Product'
+import Form from './pages/Form'
 
 export default function Routes() {
   return (
@@ -13,6 +14,7 @@ export default function Routes() {
         <Route path="/products" exact component={Home} />
         <Route path="/carrinho" exact component={Cart} />
         <Route path="/product/:id" exact component={Product} />
+        <Route path="/cadastro" exact component={Form} />
       </Switch>
     </BrowserRouter>
   )

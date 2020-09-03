@@ -1,0 +1,27 @@
+.card-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.card-form .card-form-content{
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  width: 600px;
+  margin-top: 25px;
+  border-radius: 8px;
+  padding: 30px;
+}
+
+.card-form .card-form-content .form-fields{
+  display: flex;
+  flex-direction: column;
+}
+
+.form-fields label{
+  font-size: 24px;
+  margin: 5px 0;
+}
+
+.form-fields input{
+}
