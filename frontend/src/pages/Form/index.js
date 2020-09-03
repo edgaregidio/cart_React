@@ -1,25 +1,20 @@
 import React from 'react'
 import { Formik, Field, Form, ErrorMessage } from 'formik'
-
 import Header from '../../Components/Header'
 import { useCart } from '../../hooks/CartProvider'
 import schema from '../../schema'
 import './styles.css'
 
 export default function Cart() {
-
-  const { totalPriceCart, countOfCart } = useCart();
+  // const { totalPriceCart, countOfCart } = useCart();
+  const cart = useCart();
 
   function onSubmit(values) {
-    console.log('SUBMIT', values)
+    console.log('SUBMIT', values, cart.products)
   }
-
   return (
-
     <div>
       <Header />
-
-
       {
         <div className='card-form'>
         <Formik
@@ -40,33 +35,28 @@ export default function Cart() {
                 <div className='result-products'>
                   <div>
                     <h1>Valor total</h1>
-                    <h1>R$ {totalPriceCart()}</h1>
+                    <h1>R$ {cart.totalPriceCart()}</h1>
                   </div>
-
                   <div>
                     <h1>Total de itens</h1>
-                    <h1>{countOfCart()}</h1>
+                    <h1>{cart.countOfCart()}</h1>
                   </div>
-
                 </div>
                 <div className='form-fields'>
                   <label>Nome</label>
                   <Field name='name' type='text' />
                   <ErrorMessage name='name' />
                 </div>
-
                 <div className='form-fields' >
                   <label>E-mail</label>
                   <Field name='email' type='email' />
                   <ErrorMessage name='email' />
                 </div>
-
                 <div className='form-fields' >
                   <label>CPF</label>
                   <Field name='cpf' type='text' />
                   <ErrorMessage name='cpf' />
                 </div>
-
                 <div className='form-address'>
                   <div className='form-fields' >
                     <label>CEP</label>
@@ -79,7 +69,6 @@ export default function Cart() {
                     <ErrorMessage name='address' />
                   </div>
                 </div>
-
                 <div className='form-address'>
                   <div className='form-fields' >
                     <label>Bairro</label>
@@ -99,8 +88,6 @@ export default function Cart() {
         />
       </div>
       }
-
-      
     </div>
   );
 }

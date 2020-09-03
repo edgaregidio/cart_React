@@ -94,17 +94,13 @@ export default function Cart() {
               )
             })
           }
-
         </div>
-
         {
           !cart.products.length &&
           <div className='card-null'>
             <h1>O seu carrinho está vazio!</h1>
           </div>
         }
-
-
         <div className='card-total'>
           <h1>Resumo do pedido</h1>
           <h3>Total de itens: {cart.countOfCart()}</h3>
@@ -129,7 +125,6 @@ export default function Cart() {
             </Link>
           </div>
         </div>
-
       </div>
     </div>
   )
