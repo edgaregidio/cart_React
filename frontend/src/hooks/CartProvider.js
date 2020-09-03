@@ -22,7 +22,6 @@ export default function CartProvider({ children }) {
 
     // verifica se o produto já está adicionado no carrinho
     const productExists = products.find(product => product.id === newProduct.id);
-    // console.log(productExists)
 
     if (!!productExists) {
 
@@ -38,17 +37,34 @@ export default function CartProvider({ children }) {
     return setProducts([...products, newProductToAdd])
   }
 
-
   // busca o produto no array
   // se a quantidade dele no carrinho for 1, remove do carrinho
   // se for a quantidade 2 ou mais, diminui a quantidade
-  const reduceQtdProduct = () => {
+  const reduceQtdProduct = (idProduct) => {
+    const indexProduct = products.findIndex(product => product.id === idProduct);
 
+    if (products[indexProduct].qtdInCart === 1) {
+      const productsFiltered = products.filter(product => product.id !== idProduct);
+      return setProducts(productsFiltered);
+    }
+
+    const productsToChange = products.map((product, index) => {
+      if (index === indexProduct) product.qtdInCart--;
+      return product;
+    });
+
+    setProducts(productsToChange);
   }
 
-  const removeProductsCart = (idProduct) => {
-    const productsFiltered = products.filter(product => product.id !== idProduct);
-    return setProducts(productsFiltered);
+  const incrementQtdProduct = (incrementProduct) => {
+    const productExists = products.find(product => product.id === incrementProduct.id);
+    productExists.qtdInCart++;
+    return setProducts([...products])
+  }
+
+  const removeProductsCart = (removeProduct) => {
+    const productsFiltered = products.filter(product => product.id !== removeProduct.id);
+    return setProducts([...productsFiltered]);
   }
 
   return (
@@ -59,6 +75,8 @@ export default function CartProvider({ children }) {
         addProductsCart,
         removeProductsCart,
         totalPriceCart,
+        reduceQtdProduct,
+        incrementQtdProduct,
       }}>
       {children}
     </CartContext.Provider>

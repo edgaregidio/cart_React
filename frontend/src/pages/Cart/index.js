@@ -25,21 +25,20 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default function Cart() {
-  const classes = useStyles();
 
+  const classes = useStyles();
   const cart = useCart();
 
-  console.log(cart.products)
+  const getCountInTheCart = (idProduct) => {
+    const productInTheCart = cart.products.find(product => product.id === idProduct);
+    return !!productInTheCart ? productInTheCart.qtdInCart : 0;
+  }
 
   return (
     <div>
-
       <Header />
-
       <div className='content'>
-
         <div className='list-products'>
-
           {
             cart.products.map((product, index) => {
               return (
@@ -58,16 +57,27 @@ export default function Cart() {
                     <h3>qtd.</h3>
                     <div className='card-quant-product'>
                       <div className='card-increment'>
-                        <Button color="inherit">
+                        <Button color="inherit" onClick={() => {
+                          cart.reduceQtdProduct(product.id);
+                        }}>
                           <RemoveIcon />
                         </Button>
+
                         <p>{product.qtdInCart}</p>
-                        <Button color="inherit">
+
+                        <Button color="inherit" onClick={() => {
+                          if ((product.quantity - getCountInTheCart(product.id)) === 0) return;
+                          cart.incrementQtdProduct(product);
+                        }}>
                           <AddIcon />
                         </Button>
 
                       </div>
-                      <Button color="inherit">
+                      <Button color="inherit" onClick={() => {
+                        if ((!!product.id)) {
+                          cart.removeProductsCart(product)
+                        }
+                      }}>
                         <DeleteIcon />
                       </Button>
                     </div>
@@ -87,23 +97,29 @@ export default function Cart() {
         </div>
 
         {
-          <div className='card-total'>
-            <h1>Resumo do pedido</h1>
-            <h3>Total de itens: {cart.countOfCart()}</h3>
-            <div className='total'>
-              <h1>Total</h1>
-              <h1>R$ {cart.totalPriceCart()}</h1>
-            </div>
-            <div className={classes.root}>
-              <Button variant="contained" color="primary">
-                <Typography variant="h6" className={classes.title}>
-                  confirmar Compra
-              </Typography>
-                <CheckIcon />
-              </Button>
-            </div>
+          !cart.products.length &&
+          <div className='card-null'>
+            <h1>O seu carrinho está vazio!</h1>
           </div>
         }
+
+
+        <div className='card-total'>
+          <h1>Resumo do pedido</h1>
+          <h3>Total de itens: {cart.countOfCart()}</h3>
+          <div className='total'>
+            <h1>Total</h1>
+            <h1>R$ {cart.totalPriceCart()}</h1>
+          </div>
+          <div className={classes.root}>
+            <Button variant="contained" color="primary">
+              <Typography variant="h6" className={classes.title}>
+                confirmar Compra
+              </Typography>
+              <CheckIcon />
+            </Button>
+          </div>
+        </div>
 
       </div>
     </div>

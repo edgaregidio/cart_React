@@ -69,6 +69,22 @@
   margin: 0 10px;
 }
 
+.card-null {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #FFF;
+  width: 800px;
+  height: 300px;
+  border-radius: 8px;
+  margin-top: 25px;
+}
+
+.card-null h1{
+  display: inline;
+  color: #000;
+}
+
 .card-total {
   display: flex;
   flex-direction: column;

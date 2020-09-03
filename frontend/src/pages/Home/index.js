@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
-
 import api from '../../services/api'
-
+import { useCart } from '../../hooks/CartProvider'
 import Header from '../../Components/Header'
 import './styles.css'
 
@@ -20,9 +18,10 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function Home() {
-  const classes = useStyles();
+export default function Home(props) {
 
+  const classes = useStyles();
+  const cart = useCart();
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -31,6 +30,11 @@ export default function Home() {
         setProducts(data);
       });
   }, []);
+
+  const getCountInTheCart = (idProduct) => {
+    const productInTheCart = cart.products.find(product => product.id === idProduct);
+    return !!productInTheCart ? productInTheCart.qtdInCart : 0;
+  }
 
   return (
     <div>
@@ -66,11 +70,16 @@ export default function Home() {
                       <h2>{product.title}</h2>
                       <p>{product.brand}</p>
                       <h3>R$ {product.price.toFixed(2).split('.').join(',')}</h3>
-                      <h4>Quantidade: {product.quantity} </h4>
+                      <h4>Quantidade: {product.quantity - getCountInTheCart(product.id)} </h4>
                     </Link>
 
                     <div className="button-add">
-                      <Button color="inherit">
+                      <Button color="inherit" onClick={() => {
+
+                        if ((product.quantity - getCountInTheCart(product.id)) === 0) return;
+                        cart.addProductsCart(product);
+
+                      }}>
                         <Typography variant="h6" className={classes.title1}>
                           Adicionar produto
                         </Typography>
