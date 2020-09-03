@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 import Button from '@material-ui/core/Button';
@@ -112,12 +113,20 @@ export default function Cart() {
             <h1>R$ {cart.totalPriceCart()}</h1>
           </div>
           <div className={classes.root}>
-            <Button variant="contained" color="primary">
-              <Typography variant="h6" className={classes.title}>
-                confirmar Compra
+            <Link
+              to='/cadastro'
+              style={{
+                textDecoration: 'none',
+                color: '#FFF'
+              }}
+            >
+              <Button variant="contained" color="primary">
+                <Typography variant="h6" className={classes.title}>
+                  confirmar Compra
               </Typography>
-              <CheckIcon />
-            </Button>
+                <CheckIcon />
+              </Button>
+            </Link>
           </div>
         </div>
 

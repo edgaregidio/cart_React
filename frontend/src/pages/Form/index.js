@@ -2,10 +2,13 @@ import React from 'react'
 import { Formik, Field, Form, ErrorMessage } from 'formik'
 
 import Header from '../../Components/Header'
+import { useCart } from '../../hooks/CartProvider'
 import schema from '../../schema'
 import './styles.css'
 
 export default function Cart() {
+
+  const { totalPriceCart, countOfCart } = useCart();
 
   function onSubmit(values) {
     console.log('SUBMIT', values)
@@ -15,7 +18,10 @@ export default function Cart() {
 
     <div>
       <Header />
-      <div className='card-form'>
+
+
+      {
+        <div className='card-form'>
         <Formik
           validationSchema={schema}
           onSubmit={onSubmit}
@@ -30,19 +36,16 @@ export default function Cart() {
           }}
           render={({ values, isValid }) => (
             <Form>
-
-
-
               <div className='card-form-content'>
                 <div className='result-products'>
                   <div>
                     <h1>Valor total</h1>
-                    <h1>R$ 4000,00</h1>
+                    <h1>R$ {totalPriceCart()}</h1>
                   </div>
 
                   <div>
                     <h1>Total de itens</h1>
-                    <h1>4</h1>
+                    <h1>{countOfCart()}</h1>
                   </div>
 
                 </div>
@@ -88,7 +91,6 @@ export default function Cart() {
                     <Field name='number' type='numero' />
                     <ErrorMessage name='number' />
                   </div>
-
                 </div>
                 <button type='submit' disabled={!isValid}>Cadastrar</button>
               </div>
@@ -96,6 +98,9 @@ export default function Cart() {
           )}
         />
       </div>
+      }
+
+      
     </div>
   );
 }
